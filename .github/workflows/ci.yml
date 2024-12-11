@@ -1,12 +1,6 @@
 name: CI for Petstore API Tests
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: push
 
 jobs:
   build:
@@ -23,15 +17,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '18'
-
-      # Cache Maven dependencies
-      - name: Cache Maven dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven
 
       # Run Maven tests
       - name: Run tests
